@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.2.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -11,6 +12,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.5",
+    "graphql": "^15.3.0",
     "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -20,7 +22,7 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^5.0.0",
     "typescript": "~3.7.2",
-    "va-components": "^1.0.8"
+    "va-components": "^1.0.10"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,6 +48,8 @@
     ]
   },
   "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "apollo": "^2.30.3",
     "webpack-cli": "^3.3.12"
   }
 }
