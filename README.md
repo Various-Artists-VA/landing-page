@@ -1,2 +1,1 @@
-# landing-page
-variousartists.app
+https://variousartists.app
