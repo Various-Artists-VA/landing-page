@@ -7,7 +7,7 @@ import './index.css'
 import * as serviceWorker from './serviceWorker'
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: 'http://127.0.0.1:8080/graphql',
+  uri: 'http://127.0.0.1:8000/graphql',
 })
 ReactDOM.render(
   <React.StrictMode>

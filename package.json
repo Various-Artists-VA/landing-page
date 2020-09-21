@@ -12,6 +12,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.5",
+    "formik": "^2.1.5",
     "graphql": "^15.3.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.1.2",
@@ -23,7 +24,8 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^5.0.0",
     "typescript": "~3.7.2",
-    "va-components": "^1.0.17"
+    "va-components": "^1.0.17",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",
