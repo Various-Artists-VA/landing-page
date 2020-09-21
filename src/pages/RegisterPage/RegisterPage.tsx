@@ -33,8 +33,8 @@ const RegisterPage: React.FC = () => {
             name: '',
             password: '',
           }}
-          validate={object.shape({
-            dob: string().required().match(DATE_REGEX),
+          validationSchema={object().shape({
+            dob: string().matches(DATE_REGEX).required(),
             email: string().email().required(),
             location: string(),
             name: string().required(),
