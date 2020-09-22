@@ -15,7 +15,6 @@ const RegisterPage: React.FC = () => {
   const step = new URLSearchParams(window.location.search).get('step')
   const [createUser] = useCreateUserMutation({
     onCompleted: (data) => {
-      console.log('success')
       history.push('/register?step=3')
     },
     onError: (e) => {
