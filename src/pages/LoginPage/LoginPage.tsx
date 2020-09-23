@@ -31,9 +31,11 @@ const LoginPage: React.FC = () => {
           })
           const json = await response.json()
           if (json.response === 'success') {
+            setSubmitting(false)
             history.push('/home')
+          } else {
+            console.log(json.response)
           }
-          setSubmitting(false)
         }}
       >
         {({ handleSubmit, handleChange }) => <LoginForm handleSubmit={handleSubmit} handleChange={handleChange} />}
