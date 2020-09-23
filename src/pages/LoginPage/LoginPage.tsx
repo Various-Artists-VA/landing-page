@@ -32,7 +32,7 @@ const LoginPage: React.FC = () => {
           const json = await response.json()
           if (json.response === 'success') {
             setSubmitting(false)
-            history.push('/home')
+            history.push('/dashboard')
           } else {
             console.log(json.response)
           }

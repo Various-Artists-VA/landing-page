@@ -6,6 +6,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage'
 import LandingPage from './pages/LandingPage/LandingPage'
 import DashboardPage from './pages/DashboardPage/DashboardPage'
 import LoginPage from './pages/LoginPage/LoginPage'
+import ProtectedRoute from './components/ProtectedRoute'
 import styles from './App.module.scss'
 
 export default function App() {
@@ -15,10 +16,10 @@ export default function App() {
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/about" component={AboutPage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/home" component={DashboardPage} />
+          <Route exact path="/about" component={AboutPage} />
+          <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <ProtectedRoute exact path="/dashboard" component={DashboardPage} />
         </Switch>
       </Router>
     </div>
