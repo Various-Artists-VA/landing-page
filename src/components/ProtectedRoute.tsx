@@ -8,19 +8,12 @@ interface ProtectedRouteProps {
   exact?: boolean
 }
 
-class ProtectedRoute extends React.PureComponent<ProtectedRouteProps> {
-  protected isLoggedIn: boolean
-  constructor(props: ProtectedRouteProps) {
-    super(props)
-    this.isLoggedIn = Cookies.get('logged_in') === 'true'
-  }
-  public render() {
-    const { component: Component, ...rest } = this.props
-    if (this.isLoggedIn) {
-      return <Route component={Component} {...rest} />
-    } else {
-      return <Redirect to="/login" />
-    }
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ component, ...rest }) => {
+  const Component = component
+  if (Cookies.get('logged_in') === 'true') {
+    return <Route component={Component} {...rest} />
+  } else {
+    return <Redirect to="/login" />
   }
 }
 export default ProtectedRoute
