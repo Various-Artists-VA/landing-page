@@ -55,7 +55,7 @@ export const StepOne: React.FC<StepOneProps> = ({ handleChange, values }) => {
           type="primary"
           variant="large"
           onClick={() => {
-            history.push('/register?step=2')
+            history.push(`${window.location.pathname}?step=2`)
           }}
         >
           Continue Registration
@@ -67,8 +67,11 @@ export const StepOne: React.FC<StepOneProps> = ({ handleChange, values }) => {
 
 interface StepTwoProps {
   handleSubmit: () => void
+  type: string
   handleChange: (e: React.FormEvent<HTMLInputElement>) => void | undefined
   values: {
+    artistName?: string
+    labelName?: string
     dob: string
     email: string
     location: string
@@ -76,7 +79,7 @@ interface StepTwoProps {
     password: string
   }
 }
-export const StepTwo: React.FC<StepTwoProps> = ({ handleSubmit, handleChange, values }) => {
+export const StepTwo: React.FC<StepTwoProps> = ({ handleSubmit, handleChange, values, type }) => {
   const { dob, location } = values
   return (
     <div className={styles.container}>
@@ -90,6 +93,18 @@ export const StepTwo: React.FC<StepTwoProps> = ({ handleSubmit, handleChange, va
         onChange={handleChange}
         placeholder="Berlin"
       />
+      {type !== 'user' && (
+        <Input.TextInput
+          name={`${type}Name`}
+          value={values[`${type}Name` as keyof StepTwoProps['values']]}
+          label={`Your ${type.charAt(0).toUpperCase() + type.slice(1)}${type === 'label' ? "'s" : ''} Name`}
+          className={styles.input}
+          type="text"
+          variant={Input.InputVariant.large}
+          onChange={handleChange}
+          placeholder=""
+        />
+      )}
       <Input.TextInput
         name="dob"
         value={dob}

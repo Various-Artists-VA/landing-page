@@ -31,7 +31,7 @@ const LandingPage: React.FC = () => {
           type="secondary"
           variant="large"
           onClick={() => {
-            history.push('/register?step=1')
+            history.push('/u/register?step=1')
           }}
         >
           Register
