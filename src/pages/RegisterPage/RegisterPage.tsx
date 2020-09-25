@@ -49,12 +49,12 @@ const RegisterPage: React.FC = () => {
             setSubmitting(false)
           }}
         >
-          {({ handleSubmit, handleChange }) => (
+          {({ handleSubmit, handleChange, values }) => (
             <form>
               {step === '1' ? (
-                <StepOne handleChange={handleChange} />
+                <StepOne handleChange={handleChange} values={values} />
               ) : step === '2' ? (
-                <StepTwo handleSubmit={handleSubmit} handleChange={handleChange}></StepTwo>
+                <StepTwo handleSubmit={handleSubmit} handleChange={handleChange} values={values}></StepTwo>
               ) : step === '3' ? (
                 <StepThree></StepThree>
               ) : (
