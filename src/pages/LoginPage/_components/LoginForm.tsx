@@ -11,7 +11,7 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = ({ handleChange, handleSubmit }) => {
   return (
     <>
-      <Input.TextInput
+      <Input.Text
         name="email"
         className={styles.input}
         label="Your Email:"
@@ -19,7 +19,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleChange, handleSubmit }) => 
         variant={Input.InputVariant.large}
         onChange={handleChange}
       />
-      <Input.TextInput
+      <Input.Text
         name="password"
         className={styles.input}
         label="Your Password:"

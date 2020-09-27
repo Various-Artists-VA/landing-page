@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Button, Input, Typography } from 'va-components'
+import { Button, Input, Typography, Formik } from 'va-components'
 import landingPageStyles from '../../LandingPage/LandingPage.module.scss'
 import styles from './RegisterForm.module.scss'
 
@@ -20,7 +20,7 @@ export const StepOne: React.FC<StepOneProps> = ({ handleChange, values }) => {
   const { email, name, password } = values
   return (
     <div className={styles.container}>
-      <Input.TextInput
+      <Formik.Text
         name="name"
         value={name}
         className={styles.input}
@@ -30,7 +30,7 @@ export const StepOne: React.FC<StepOneProps> = ({ handleChange, values }) => {
         placeholder="Anja Huwe"
         onChange={handleChange}
       />
-      <Input.TextInput
+      <Formik.Text
         name="email"
         value={email}
         className={styles.input}
@@ -40,7 +40,7 @@ export const StepOne: React.FC<StepOneProps> = ({ handleChange, values }) => {
         placeholder="you@example.com"
         onChange={handleChange}
       />
-      <Input.TextInput
+      <Formik.Text
         name="password"
         value={password}
         className={styles.input}
@@ -83,7 +83,7 @@ export const StepTwo: React.FC<StepTwoProps> = ({ handleSubmit, handleChange, va
   const { dob, location } = values
   return (
     <div className={styles.container}>
-      <Input.TextInput
+      <Formik.Text
         name="location"
         value={location}
         label="Location:"
@@ -94,7 +94,7 @@ export const StepTwo: React.FC<StepTwoProps> = ({ handleSubmit, handleChange, va
         placeholder="Berlin"
       />
       {type !== 'user' && (
-        <Input.TextInput
+        <Formik.Text
           name={`${type}Name`}
           value={values[`${type}Name` as keyof StepTwoProps['values']]}
           label={`Your ${type.charAt(0).toUpperCase() + type.slice(1)}${type === 'label' ? "'s" : ''} Name`}
@@ -105,7 +105,7 @@ export const StepTwo: React.FC<StepTwoProps> = ({ handleSubmit, handleChange, va
           placeholder=""
         />
       )}
-      <Input.TextInput
+      <Formik.Text
         name="dob"
         value={dob}
         label="Birthdate:"
