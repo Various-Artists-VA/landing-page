@@ -1,8 +1,12 @@
 import React from 'react'
+import { PayPalButton } from 'react-paypal-button-v2'
 import { useHistory } from 'react-router-dom'
 import { Button, Input, Typography, Formik } from 'va-components'
 import landingPageStyles from '../../LandingPage/LandingPage.module.scss'
 import styles from './RegisterForm.module.scss'
+import iPhone from '../../../iPhone.svg'
+
+const PAYPAL_ID = process.env.REACT_APP_PAYPAL_CLIENT_ID
 
 interface StepOneProps {
   handleChange: (e: React.FormEvent<HTMLInputElement>) => void | undefined
@@ -13,9 +17,10 @@ interface StepOneProps {
     name: string
     password: string
   }
+  type?: string
 }
 
-export const StepOne: React.FC<StepOneProps> = ({ handleChange, values }) => {
+export const StepOne: React.FC<StepOneProps> = ({ handleChange, values, type }) => {
   const history = useHistory()
   const { email, name, password } = values
   return (
@@ -55,7 +60,7 @@ export const StepOne: React.FC<StepOneProps> = ({ handleChange, values }) => {
           type="primary"
           variant="large"
           onClick={() => {
-            history.push(`${window.location.pathname}?step=2`)
+            history.push(`${window.location.pathname}?step=2&type=${type}`)
           }}
         >
           Continue Registration
@@ -130,7 +135,24 @@ export const StepTwo: React.FC<StepTwoProps> = ({ handleSubmit, handleChange, va
   )
 }
 
-export const StepThree: React.FC = () => {
+interface StepThreeAndFourProps {
+  type: string
+  user: {
+    id?: string
+    name?: string
+    email?: string
+    labelProfile?: {
+      id: string
+      name: string
+    }
+    artistProfile?: {
+      id: string
+      name: string
+    }
+  }
+}
+export const StepThree: React.FC<StepThreeAndFourProps> = ({ user, type }) => {
+  const history = useHistory()
   return (
     <div className={styles.container}>
       <Typography.Title className={styles.title}>
@@ -143,13 +165,85 @@ export const StepThree: React.FC = () => {
         you will own it.
       </Typography.Title>
       <div className={landingPageStyles.buttonContainer}>
-        <Button className={landingPageStyles.button} type="primary" variant="large" onClick={() => {}}>
-          Pay 9.99€ a month
-        </Button>
+        <PayPalButton
+          amount="10"
+          shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+          currency="EUR"
+          options={{
+            clientId: PAYPAL_ID,
+            currency: 'EUR',
+          }}
+          // onSuccess={() => {}}
+        >
+          Pay 9,99€ monthly
+        </PayPalButton>
         <Button className={landingPageStyles.button} type="secondary" variant="large" onClick={() => {}}>
           Pay 9.99€ once
         </Button>
+        <Button
+          className={landingPageStyles.button}
+          type="secondary"
+          variant="large"
+          onClick={() => {
+            history.push(`${window.location.pathname}?step=4&type=${type}`)
+          }}
+        >
+          Next
+        </Button>
       </div>
+    </div>
+  )
+}
+
+export const StepFour: React.FC<StepThreeAndFourProps> = ({ user, type }) => {
+  const history = useHistory()
+  const [profilePicture, setProfilePicture] = React.useState('')
+  if (!user.artistProfile?.id && !user.labelProfile?.id) {
+    history.push('/')
+  }
+  const profile = user.artistProfile || user.labelProfile
+  return (
+    <div
+      style={{
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'left',
+      }}
+    >
+      <>
+        <img src={iPhone} />
+        <div style={{ position: 'absolute', top: '20%', marginLeft: '140px' }}>{profile?.name}</div>
+        <img
+          src={profilePicture}
+          height={150}
+          width={312}
+          style={{ position: 'absolute', top: '25%', marginLeft: '24px' }}
+        />
+        <input
+          id="profilePicture"
+          type="file"
+          onChange={(e) => setProfilePicture(URL.createObjectURL(e.target.files ? e.target.files[0] : ''))}
+        />
+        <Button
+          variant="large"
+          type="primary"
+          onClick={async () => {
+            const files = (document.getElementById('profilePicture') as HTMLInputElement).files
+            const formData = new FormData()
+            formData.append('profile_picture', files ? files[0] : 'null')
+            formData.append('type', type ?? '')
+            formData.append('id', profile?.id ?? '')
+            await fetch('http://localhost:8000/upload/profilePicture', {
+              body: formData,
+              credentials: 'include',
+              method: 'POST',
+              mode: 'cors',
+            })
+          }}
+        >
+          Submit
+        </Button>
+      </>
     </div>
   )
 }
