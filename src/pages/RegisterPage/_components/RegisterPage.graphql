@@ -4,25 +4,14 @@ mutation createUser($data: CreateUserInput!) {
       id
       name
       email
-    }
-  }
-}
-
-mutation createArtistUser($data: CreateArtistUserInput!) {
-  createArtistUser(data: $data) {
-    user {
-      id
-      name
-      email
-    }
-  }
-}
-mutation createLabelUser($data: CreateLabelUserInput!) {
-  createLabelUser(data: $data) {
-    user {
-      id
-      name
-      email
+      labelProfile {
+        id
+        name
+      }
+      artistProfile {
+        id
+        name
+      }
     }
   }
 }
