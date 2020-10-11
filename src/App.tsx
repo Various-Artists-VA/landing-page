@@ -6,6 +6,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage'
 import LandingPage from './pages/LandingPage/LandingPage'
 import DashboardPage from './pages/DashboardPage/DashboardPage'
 import LoginPage from './pages/LoginPage/LoginPage'
+import ReleaseCreatePage from './pages/ReleaseCreatePage/ReleaseCreatePage'
 import ProtectedRoute from './components/ProtectedRoute'
 import styles from './App.module.scss'
 
@@ -20,6 +21,7 @@ export default function App() {
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/login" component={LoginPage} />
           <ProtectedRoute exact path="/dashboard" component={DashboardPage} />
+          <ProtectedRoute exact path="/release/create" component={ReleaseCreatePage} />
         </Switch>
       </Router>
     </div>
