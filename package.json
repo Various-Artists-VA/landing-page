@@ -16,7 +16,8 @@
     "@types/yup": "^0.29.7",
     "apollo-link-http": "^1.5.17",
     "concurrently": "^5.3.0",
-    "formik": "^2.1.5",
+    "flexboxgrid": "^6.3.1",
+    "formik": "^2.2.0",
     "graphql": "^15.3.0",
     "js-cookie": "^2.2.1",
     "node-sass": "^4.14.1",
@@ -30,7 +31,7 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^5.0.0",
     "typescript": "~3.7.2",
-    "va-components": "^1.0.31",
+    "va-components": "1.0.35",
     "yup": "^0.29.3"
   },
   "scripts": {

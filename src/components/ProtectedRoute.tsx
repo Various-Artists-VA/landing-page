@@ -25,7 +25,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ component, ...rest }) =
 const CurrentUserProvider: React.FC = ({ children }) => {
   const { data, loading, error } = useCurrentUserQuery()
   if (!loading && !error && data) {
-    return <UserContext.Provider value={data.me ? data.me : {}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={data.me || null}>{children}</UserContext.Provider>
   } else {
     // TODO: Handle exceptions
     return <></>

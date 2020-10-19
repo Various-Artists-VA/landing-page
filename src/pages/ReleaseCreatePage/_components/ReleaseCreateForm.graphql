@@ -5,3 +5,14 @@ mutation initializeRelease {
     }
   }
 }
+mutation updateRelease($data: UpdateReleaseInput!) {
+  updateRelease(data: $data) {
+    release {
+      id
+      name
+      tracks {
+        id
+      }
+    }
+  }
+}

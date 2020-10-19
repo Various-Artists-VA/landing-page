@@ -1,0 +1,14 @@
+query currentUser {
+  me {
+    id
+    name
+    labelProfile {
+      id
+      name
+    }
+    artistProfile {
+      id
+      name
+    }
+  }
+}
