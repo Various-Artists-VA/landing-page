@@ -1,5 +1,5 @@
-mutation initializeRelease {
-  initializeRelease {
+mutation createRelease($data: CreateReleaseInput!) {
+  createRelease(data: $data) {
     release {
       id
     }
