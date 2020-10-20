@@ -18,7 +18,7 @@ interface ReleaseCreateForm {
   values: {
     id: string
     name: string
-    release_date: string
+    releaseDate: string
     description: string
     tracks: ReleaseTrackInput[]
   }

@@ -14,7 +14,7 @@ const initialValues = {
   // genres: [],
   id: '',
   name: '',
-  release_date: '',
+  releaseDate: '',
   // price: 0.0,
   tracks: [],
   // type: '',
@@ -27,7 +27,7 @@ const validationSchema = object().shape({
   id: string().required(),
   name: string().required(),
   price: number().required(),
-  release_date: string().matches(DATE_REGEX).required(),
+  releaseDate: string().matches(DATE_REGEX).required(),
   tracks: array().of(string()).required(),
   type: string().required(),
 })

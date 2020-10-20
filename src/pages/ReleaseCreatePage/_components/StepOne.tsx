@@ -12,7 +12,7 @@ interface StepOneProps {
   values: {
     id: string
     name: string
-    release_date: string
+    releaseDate: string
     description: string
     tracks: ReleaseTrackInput[]
   }
@@ -37,7 +37,7 @@ const StepOne: React.FC<StepOneProps> = ({ coverPhoto, setCoverPhoto, setId, val
               variables: {
                 data: {
                   description: values.description,
-                  release_date: values.release_date,
+                  releaseDate: values.releaseDate,
                   name: values.name,
                 },
               },
@@ -126,7 +126,7 @@ const StepOne: React.FC<StepOneProps> = ({ coverPhoto, setCoverPhoto, setId, val
       <Row>
         <Col lg={6}>
           <Formik.Text
-            name="release_date"
+            name="releaseDate"
             label="Release Date"
             type="text"
             variant={Input.InputVariant.large}
